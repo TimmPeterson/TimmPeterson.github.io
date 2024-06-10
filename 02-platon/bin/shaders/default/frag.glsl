@@ -16,6 +16,12 @@ void main(void) {
 
     float k = dot(L, normalize(N));
 
-    OutColor = vec4(k * vec3(0, 0.7f, 0.6f), 1.0f);
+    vec3 color = k * vec3(0, 0.7f, 0.6f);
+    vec3 R, V = vec3(0, 0, -1);
+
+    R = reflect(V, N);
+    color += vec3(0.2f) * max(0.01f, pow(dot(R, L), 10.0f));
+
+    OutColor = vec4(color, 1.0f);
     //OutColor = vec4(N, 1.0);
 }
