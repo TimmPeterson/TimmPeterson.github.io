@@ -78,7 +78,7 @@
       n++;
     }
 
-    OutColor = vec4(vec3(255.0) - vec3(3.0 * vec3(float(n) / 250.0, float(n) / 230.0, float(n) / 240.0)) * vec3(R, G, B) / 255.0, 1.0);
+    OutColor = vec4(vec3(1.0) - vec3(3.0 * vec3(float(n) / 250.0, float(n) / 230.0, float(n) / 240.0)) * vec3(R, G, B) / 255.0, 1.0);
   }
   `;
     let vs = loadShader(gl.VERTEX_SHADER, vs_txt),
