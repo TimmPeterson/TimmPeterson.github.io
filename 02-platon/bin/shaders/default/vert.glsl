@@ -1,10 +1,13 @@
 #version 300 es
 precision highp float;
+
 in vec3 InPosition;
 in vec3 InNormal;
+in vec2 InTexCoord;
 
 out vec3 DrawPos;
 out vec3 DrawNormal;
+out vec2 DrawTexCoord;
 
 // Uniform buffer for camera.
 // Updates only on camera update
@@ -34,4 +37,5 @@ void main(void) {
     gl_Position = MatrProj * MatrView * MatrWorld * vec4(InPosition, 1);
     DrawPos = vec3(MatrWorld * vec4(InPosition.xyz, 1.0f));
     DrawNormal = mat3(transpose(inverse(MatrWorld))) * InNormal;
+    DrawTexCoord = InTexCoord;
 }
