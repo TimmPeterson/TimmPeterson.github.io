@@ -11,13 +11,14 @@ uniform sampler2D uTex;
 
 uniform u_material {
     vec4 Ka4;
-    vec4 Kd4;
+    vec4 KdTrans;
     vec4 KsPh;
     vec4 TexFlags;
 };
 
 #define Ka Ka4.xyz
-#define Kd Kd4.xyz
+#define Kd KdTrans.xyz
+#define Trans KdTrans.w
 #define Ks KsPh.xyz
 #define Ph KsPh.w
 
@@ -39,7 +40,7 @@ void main(void) {
     color += Ks * max(0.01f, pow(dot(R, L), Ph));
 
     //OutColor = vec4(Ka, 1.0f);
-    OutColor = vec4(color, 1.0f);
+    OutColor = vec4(color, Trans);
     //if(TexFlags.x != 0.0f)
     //    OutColor = vec4(texture(uTex, gl_FragCoord.xy / vec2(400.0f, 400.0f)).rgb, 1.0f);
     //OutColor = vec4(N, 1.0);
