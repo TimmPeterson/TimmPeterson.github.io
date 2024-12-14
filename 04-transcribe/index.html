@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" class="notranslate" translate="no">
+  <head>
+    <meta name="google" content="notranslate" />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="bin/textures/PNG.PNG" type="image/png" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>transcriber</title>
+    <script type="module" src="./src/main.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,501;1,501&display=swap");
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <textarea id="input_text" spellcheck="false"></textarea>
+      <br />
+      <button id="button">transrcribe</button>
+      <br />
+      <!-- <label for="select" id="label">way to translate letter "я"</label> -->
+      <select name="select" id="select">
+        <option value="i">transcribe "я" as "ia"</option>
+        <option value="y">transcribe "я" as "ya"</option>
+      </select>
+    </div>
+  </body>
+</html>
