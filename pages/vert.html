@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment Shader Editor</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/vert.css">
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-palenight.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>  
+</head>
+<body>    
+  
+    <div class="panel editor-panel">
+        <div class="slider-container">
+          <input id="vertex-count-slider" type="range" min="0" max="10000" value="100">
+          <label id="vertex-count-label" for="vertex-count-slider">N:</label>
+        </div>
+
+
+        <textarea id="shader-editor" class="shader-editor">#version 300 es
+in vec2 a_position;
+in float a_id;
+
+uniform float u_N;
+
+void main() {
+    // Размещаем точки по окружности
+    float N = 100.0;           // количество вершин
+    float angle = a_id / N * 6.28318530718; // полный круг = 2π
+
+    vec2 pos = vec2(cos(angle), sin(angle)) * 0.8; // радиус 0.8 от центра
+    gl_Position = vec4(pos, 0.0, 1.0);
+    gl_PointSize = 12.0;
+}</textarea>
+        <button id="run-btn" class="run-btn">Compile</button>
+        <div id="shader-log" class="shader-log"><p class="green">Compiled successfully!</p></div>
+    </div>
+    <div class="divider"></div>
+    <div class="panel canvas-panel">
+        <canvas id="shader-canvas"></canvas>
+    </div>
+
+
+    <script src="../scripts/vert.js"></script>
+</body>
+</html>

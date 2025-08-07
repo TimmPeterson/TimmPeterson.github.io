@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Центральный прокручиваемый блок</title>
+<link rel="stylesheet" href="../styles/frag_choose.css">
+</head>
+<body>
+    <div class="scroll-container">
+        <button class="button-block button-new" onclick="goToEditor('empty')">New</button>   
+        <div class="button-separator"></div>
+        <button class="button-block" onclick="goToEditor('mandelbrot')">Mandelbrot</button>
+    </div>
+
+    <script>
+      function goToEditor(fragName) {
+        window.location.href = 'frag.html?shader-name=' + encodeURIComponent(fragName);
+      }
+    </script>
+</body>
+</html>

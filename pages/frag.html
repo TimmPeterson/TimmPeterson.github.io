@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment Shader Editor</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/frag.css">
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-palenight.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>  
+</head>
+<body>    
+    <div class="panel editor-panel">
+        <textarea id="shader-editor" class="shader-editor">#version 300 es
+precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+
+out vec4 outColor;
+
+
+vec2 mul(vec2 a, vec2 b)
+{
+  return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
+
+void main() 
+{  
+  	float mn = min(u_resolution.x, u_resolution.y);
+    vec2 uv = 2.0 * (gl_FragCoord.xy - 0.5 * u_resolution) / mn;
+   	
+  	uv = (uv - vec2(0.25, 0)) * 1.25;
+	vec3 col = vec3(0);
+ 	vec2 z = uv, z0 = uv;
+  	int n = 0;
+  
+  	while (n < 256 && z.x * z.x + z.y * z.y < 4.0)
+    {
+      z = mul(z, z) + z0;
+      n++;
+    }
+  
+  	float m = float(n);
+  	col = vec3(m * m, m * m * pow(m / 255.0, 4.0) * 255., m * 3.) / 255.0;
+
+    outColor = vec4(vec3(0, 0.5, 0.5), 1.0);
+}</textarea>
+        <button id="run-btn" class="run-btn">Compile</button>
+        <div id="shader-log" class="shader-log"><p class="green">Compiled successfully!</p></div>
+    </div>
+    <div class="divider"></div>
+    <div class="panel canvas-panel">
+        <canvas id="shader-canvas"></canvas>
+    </div>
+
+
+    <script src="../scripts/frag.js"></script>
+</body>
+</html>

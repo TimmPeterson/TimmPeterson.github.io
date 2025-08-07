@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    justify-content: center; /* центрируем по горизонтали */
+    align-items: center;     /* центрируем по вертикали */
+    height: 100vh;
+    background-color: #002432;
+    margin: 0;
+    font-family: sans-serif;
+    position: relative; /* нужно для абсолютного позиционирования заголовка */
+}
+
+.page-title1 {
+    position: absolute;
+    top: 30px; /* отступ сверху */
+    left: 50%;
+    transform: translateX(-50%); /* центрируем по горизонтали */
+    color: #004e6d;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.page-title2 {
+    position: absolute;
+    top: 90px; /* отступ сверху */
+    left: 50%;
+    transform: translateX(-50%); /* центрируем по горизонтали */
+    color: #00374d;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px; /* расстояние между кнопками */
+}
+
+.btn {
+    display: inline-block;
+    padding: 30px 60px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn-frag {
+    background-color: #e74c3c; /* красная кнопка */
+}
+
+.btn-vert {
+    background-color: #3498db; /* синяя кнопка */
+}
