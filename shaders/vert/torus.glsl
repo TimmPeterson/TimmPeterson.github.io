@@ -74,7 +74,7 @@ void main() {
   	gl_Position = gl_Position / gl_Position.w;
   	
   	float ar = 1.0;
-  	if (u_resolution.x > u_resolution.y) {
+  	if (u_resolution.x < u_resolution.y) {
       ar = u_resolution.x / u_resolution.y;
       gl_Position.y *= ar;
     }
