@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column; /* расположение сверху вниз */
     justify-content: center; /* центрируем по горизонтали */
     align-items: center;     /* центрируем по вертикали */
     height: 100vh;
